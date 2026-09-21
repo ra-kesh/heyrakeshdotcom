@@ -117,28 +117,6 @@ document.querySelectorAll<HTMLElement>('[data-spotlight]').forEach((row) => {
   });
 });
 
-document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((item) => {
-  if (!finePointer.matches || reducedMotion.matches) return;
-  item.addEventListener('pointermove', (event) => {
-    const rect = item.getBoundingClientRect();
-    const x = event.clientX - (rect.left + rect.width / 2);
-    const y = event.clientY - (rect.top + rect.height / 2);
-    const distance = Math.hypot(x, y);
-    const scale = Math.max(0, 1 - distance / 100);
-    item.style.transform = `translate(${x * 0.3 * scale}px, ${y * 0.3 * scale}px)`;
-  });
-  item.addEventListener('pointerleave', () => {
-    item.animate(
-      [
-        { transform: getComputedStyle(item).transform },
-        { transform: 'translate(0, 0)' },
-      ],
-      { duration: 420, easing: 'cubic-bezier(.2,.8,.2,1)' },
-    );
-    item.style.transform = 'translate(0, 0)';
-  });
-});
-
 const copyButton = document.querySelector<HTMLButtonElement>('[data-copy-url]');
 copyButton?.addEventListener('click', () => {
   const state = copyButton.querySelector<HTMLElement>('[data-copy-state]');

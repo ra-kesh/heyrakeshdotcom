@@ -1,0 +1,48 @@
+---
+import site from '@/config/site';
+
+const socialLinks = site.author.links.filter(({ href }) =>
+  href.startsWith('http'),
+);
+---
+
+<div class="intro-copy">
+  {site.intro.map((paragraph) => <p>{paragraph}</p>)}
+  {
+    site.author.email && (
+      <p>
+        The best way to reach me is by email at{' '}
+        <a href={`mailto:${site.author.email}`}>{site.author.email}</a>.
+        {socialLinks.length > 0 && ' You can also find me on '}
+        {socialLinks.map((item, index) => (
+          <>
+            {index > 0 && (index === socialLinks.length - 1 ? ', and ' : ', ')}
+            <a href={item.href}>{item.label}</a>
+          </>
+        ))}
+        {socialLinks.length > 0 && '.'}
+      </p>
+    )
+  }
+</div>
+
+<style>
+  .intro-copy {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .intro-copy p {
+    margin: 0;
+  }
+
+  .intro-copy a {
+    color: var(--text);
+    text-decoration-color: var(--border-strong);
+    text-underline-offset: 0.2em;
+  }
+
+  .intro-copy a:hover {
+    color: var(--accent);
+  }
+</style>

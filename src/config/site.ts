@@ -38,21 +38,20 @@ const site = siteSchema.parse({
   name: 'Rakesh Kumar Pradhan',
   title: 'Rakesh Kumar Pradhan — Designer & Developer',
   seoDescription:
-    'Rakesh Kumar Pradhan is the founder of HeyDevTeam, a product engineering studio crafting thoughtful, intuitive products with AI.',
+    'Rakesh Kumar Pradhan is a designer, developer, and founder of HeyDevTeam, creating thoughtful, intuitive products that perform as well as they look.',
   intro: [
-    'Hi, I am a product engineer from India. I love making thoughtful, intuitive products for my personal use and for my clients. I believe we can never have enough tasteful products that perform as well as they look.',
-    'I also run HeyDevTeam, where I collaborate with founders and small teams to design and build products from the earliest idea through production.',
+    'Hi, I am a product engineer and the founder of HeyDevTeam, a white-label product development agency for agencies and businesses. We turn vague ideas into thoughtful, intuitive products that solve real problems.',
   ],
   agency: {
-    name: 'heydevteam',
+    name: 'HeyDevTeam',
     url: 'https://heydevteam.com',
   },
   author: {
     name: 'Rakesh Kumar Pradhan',
     email: 'mail@heyrakesh.com',
     links: [
-      { label: 'GitHub', href: 'https://github.com/ra-kesh' },
       { label: 'X', href: 'https://x.com/heyrakeshdotcom' },
+      { label: 'GitHub', href: 'https://github.com/ra-kesh' },
       { label: 'Contra', href: 'https://contra.com/heyrakesh' },
     ],
   },

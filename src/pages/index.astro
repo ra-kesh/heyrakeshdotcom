@@ -1,5 +1,6 @@
 ---
 import BlogList from '@/components/BlogList.astro';
+import Introduction from '@/components/Introduction.astro';
 import ProjectCard from '@/components/ProjectCard.astro';
 import site from '@/config/site';
 import BaseLayout from '@/layouts/BaseLayout.astro';
@@ -10,16 +11,13 @@ const featuredPosts = posts.filter(({ data }) => data.featured).slice(0, 3);
 const featuredProjects = projects
   .filter(({ data }) => data.featured)
   .slice(0, 4);
-const socialLinks = site.author.links.filter(
-  ({ href }) => !href.startsWith('mailto:'),
-);
 ---
 
 <BaseLayout>
   <div class="home">
     <section class="home-intro" aria-label="Introduction">
       <h1 class="sr-only">{site.name}</h1>
-      {site.intro.map((paragraph) => <p>{paragraph}</p>)}
+      <Introduction />
     </section>
 
     {
@@ -67,31 +65,5 @@ const socialLinks = site.author.links.filter(
         </section>
       )
     }
-
-    <section class="home-section connect" aria-labelledby="connect">
-      <h2 id="connect">Connect</h2>
-      {
-        site.author.email && (
-          <p>
-            Feel free to contact me at{' '}
-            <a href={`mailto:${site.author.email}`}>{site.author.email}</a>.
-          </p>
-        )
-      }
-      {
-        socialLinks.length > 0 && (
-          <div class="social-links">
-            {socialLinks.map((item) => (
-              <a href={item.href} data-magnetic>
-                {item.label}
-                <svg aria-hidden="true" viewBox="0 0 15 15">
-                  <path d="M3.65 11.35a.5.5 0 0 1 0-.7L10.29 4H6a.5.5 0 0 1 0-1h5.5a.5.5 0 0 1 .5.5V9a.5.5 0 0 1-1 0V4.71l-6.65 6.64a.5.5 0 0 1-.7 0Z" />
-                </svg>
-              </a>
-            ))}
-          </div>
-        )
-      }
-    </section>
   </div>
 </BaseLayout>
