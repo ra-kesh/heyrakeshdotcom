@@ -4,14 +4,15 @@ import { renderOgImage } from '@/lib/og';
 
 export const getStaticPaths = () => [
   {
-    params: { slug: 'site' },
-    props: { title: site.title, label: 'Website' },
+    params: { slug: 'site-v2' },
   },
 ];
 
-export const GET: APIRoute = async ({ props }) => {
-  const { title, label } = props as { title: string; label: string };
-  const body = await renderOgImage({ title, label, siteName: site.name });
+export const GET: APIRoute = async () => {
+  const body = await renderOgImage({
+    name: site.author.name,
+    domain: new URL(site.url).hostname,
+  });
 
   return new Response(body, {
     headers: {
