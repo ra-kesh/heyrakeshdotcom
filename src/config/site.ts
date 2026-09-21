@@ -4,6 +4,7 @@ import { isSafeHref } from '@/lib/urls';
 const href = z.string().trim().min(1).refine(isSafeHref, 'Unsafe URL');
 
 const siteSchema = z.object({
+  url: z.url(),
   name: z.string().min(1),
   title: z.string().min(1),
   description: z.string().min(1),
@@ -28,34 +29,26 @@ const siteSchema = z.object({
 });
 
 const site = siteSchema.parse({
-  name: 'Your Name',
-  title: 'Your Name — Portfolio',
-  description: 'A concise description of the site and its author.',
+  url: 'https://heyrakesh.com',
+  name: 'Rakesh Kumar Pradhan',
+  title: 'Rakesh Kumar Pradhan — Product Engineer',
+  description:
+    'I craft thoughtful, intuitive products with the help of AI—products that perform as well as they look.',
   author: {
-    name: 'Your Name',
-    role: 'Design Engineer',
-    email: 'hello@example.com',
+    name: 'Rakesh Kumar Pradhan',
+    role: 'Product Engineer',
+    email: 'mail@heyrakesh.com',
     links: [
-      { label: 'GitHub', href: 'https://github.com/' },
-      { label: 'Email', href: 'mailto:hello@example.com' },
+      { label: 'GitHub', href: 'https://github.com/ra-kesh' },
+      { label: 'X', href: 'https://x.com/heyrakeshdotcom' },
+      {
+        label: 'Instagram',
+        href: 'https://www.instagram.com/heyrakeshdotcom/',
+      },
+      { label: 'Contra', href: 'https://contra.com/heyrakesh' },
     ],
   },
-  experience: [
-    {
-      role: 'Design Engineer',
-      company: 'Independent',
-      start: '2024',
-      end: 'Present',
-      href: '/about/',
-    },
-    {
-      role: 'Product Designer',
-      company: 'Example Studio',
-      start: '2022',
-      end: '2024',
-      href: '/about/',
-    },
-  ],
+  experience: [],
   language: 'en',
   locale: 'en_US',
   navigation: [

@@ -29,12 +29,22 @@ const {
   structuredData,
 } = Astro.props;
 
-const root = Astro.site ?? new URL(Astro.url.origin);
+const root = Astro.site ?? new URL(site.url);
 const canonicalUrl = canonical
   ? new URL(canonical, root)
   : new URL(Astro.url.pathname, root);
 const imageUrl = new URL(image, root);
 const documentTitle = title === site.title ? title : `${title} | ${site.name}`;
+const authorStructuredData = {
+  '@type': 'Person',
+  name: site.author.name,
+  jobTitle: site.author.role,
+  email: site.author.email,
+  url: new URL('/', root).href,
+  sameAs: site.author.links
+    .filter(({ href }) => href.startsWith('http'))
+    .map(({ href }) => href),
+};
 
 const defaultStructuredData: StructuredData =
   type === 'article'
@@ -47,7 +57,7 @@ const defaultStructuredData: StructuredData =
         image: imageUrl.href,
         datePublished: publishedAt?.toISOString(),
         dateModified: (updatedAt ?? publishedAt)?.toISOString(),
-        author: { '@type': 'Person', name: site.author.name },
+        author: authorStructuredData,
         keywords: tags.join(', '),
       }
     : type === 'project'
@@ -58,7 +68,7 @@ const defaultStructuredData: StructuredData =
           description,
           url: canonicalUrl.href,
           image: imageUrl.href,
-          creator: { '@type': 'Person', name: site.author.name },
+          creator: authorStructuredData,
           keywords: tags.join(', '),
         }
       : {
@@ -72,12 +82,7 @@ const defaultStructuredData: StructuredData =
               inLanguage: site.language,
             },
             {
-              '@type': 'Person',
-              name: site.author.name,
-              url: new URL('/', root).href,
-              sameAs: site.author.links
-                .filter(({ href }) => href.startsWith('http'))
-                .map(({ href }) => href),
+              ...authorStructuredData,
             },
           ],
         };

@@ -87,7 +87,7 @@ function absoluteAttributes(attributes: Record<string, string>, base: URL) {
 }
 
 export const GET: APIRoute = async ({ site }) => {
-  const root = site ?? new URL('https://example.com');
+  const root = site ?? new URL(siteConfig.url);
   const posts = await getPosts();
   const container = await AstroContainer.create({
     renderers: await loadRenderers([mdxRenderer()]),

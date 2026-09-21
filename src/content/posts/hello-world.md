@@ -3,6 +3,7 @@ title: Hello world
 description: A sample post that exercises the publishing pipeline.
 publishedAt: 2026-01-01
 featured: true
+draft: true
 tags:
   - notes
 ---

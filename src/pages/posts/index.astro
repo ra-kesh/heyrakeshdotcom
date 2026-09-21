@@ -6,14 +6,14 @@ import { getPosts } from '@/lib/content';
 const posts = await getPosts();
 ---
 
-<BaseLayout title="Posts" description="Published notes and articles.">
+<BaseLayout title="Posts" description="Writing by Rakesh Kumar Pradhan.">
   <section class="collection-page" aria-labelledby="posts-title">
     <h1 id="posts-title">Blog</h1>
     {
       posts.length > 0 ? (
         <BlogList posts={posts} />
       ) : (
-        <p class="empty-state">No posts published.</p>
+        <p class="empty-state">Writing will appear here as it is published.</p>
       )
     }
   </section>

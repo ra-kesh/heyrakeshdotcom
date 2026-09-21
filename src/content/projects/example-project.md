@@ -3,6 +3,7 @@ title: Example project
 description: A sample project that exercises the portfolio content model.
 year: 2026
 featured: true
+draft: true
 tags:
   - example
 links:

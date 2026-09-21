@@ -22,53 +22,51 @@ const socialLinks = site.author.links.filter(
       <p>{site.description}</p>
     </section>
 
-    <section class="home-section" aria-labelledby="selected-projects">
-      <h2 id="selected-projects">Selected Projects</h2>
-      {
-        featuredProjects.length > 0 ? (
+    {
+      featuredProjects.length > 0 && (
+        <section class="home-section" aria-labelledby="selected-projects">
+          <h2 id="selected-projects">Selected Projects</h2>
           <ul class="project-grid">
             {featuredProjects.map((project, index) => (
               <ProjectCard project={project} index={index} />
             ))}
           </ul>
-        ) : (
-          <p class="empty-state">No featured projects yet.</p>
-        )
-      }
-    </section>
+        </section>
+      )
+    }
 
-    <section class="home-section" aria-labelledby="work-experience">
-      <h2 id="work-experience">Work Experience</h2>
-      <div class="experience-list">
-        {
-          site.experience.map((job) => (
-            <a class="experience-row" href={job.href} data-spotlight>
-              <span class="experience-row__spotlight" aria-hidden="true" />
-              <div class="experience-row__content">
-                <div>
-                  <h3>{job.role}</h3>
-                  <p>{job.company}</p>
+    {
+      site.experience.length > 0 && (
+        <section class="home-section" aria-labelledby="work-experience">
+          <h2 id="work-experience">Work Experience</h2>
+          <div class="experience-list">
+            {site.experience.map((job) => (
+              <a class="experience-row" href={job.href} data-spotlight>
+                <span class="experience-row__spotlight" aria-hidden="true" />
+                <div class="experience-row__content">
+                  <div>
+                    <h3>{job.role}</h3>
+                    <p>{job.company}</p>
+                  </div>
+                  <p class="experience-row__dates">
+                    {job.start} – {job.end}
+                  </p>
                 </div>
-                <p class="experience-row__dates">
-                  {job.start} – {job.end}
-                </p>
-              </div>
-            </a>
-          ))
-        }
-      </div>
-    </section>
+              </a>
+            ))}
+          </div>
+        </section>
+      )
+    }
 
-    <section class="home-section" aria-labelledby="blog-posts">
-      <h2 id="blog-posts">Blog</h2>
-      {
-        featuredPosts.length > 0 ? (
+    {
+      featuredPosts.length > 0 && (
+        <section class="home-section" aria-labelledby="blog-posts">
+          <h2 id="blog-posts">Blog</h2>
           <BlogList posts={featuredPosts} />
-        ) : (
-          <p class="empty-state">No featured posts yet.</p>
-        )
-      }
-    </section>
+        </section>
+      )
+    }
 
     <section class="home-section connect" aria-labelledby="connect">
       <h2 id="connect">Connect</h2>

@@ -1,6 +1,38 @@
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
 
+const themeRoot = document.documentElement;
+const themeToggle = document.getElementById('theme-toggle');
+if (themeToggle instanceof HTMLButtonElement) {
+  const syncThemeToggle = (dark: boolean) => {
+    const label = dark ? 'Switch to light mode' : 'Switch to dark mode';
+    themeToggle.setAttribute('aria-pressed', String(dark));
+    themeToggle.setAttribute('aria-label', label);
+    themeToggle.title = label;
+  };
+
+  syncThemeToggle(themeRoot.dataset.theme === 'dark');
+
+  const themeObserver = new MutationObserver(() => {
+    syncThemeToggle(themeRoot.dataset.theme === 'dark');
+  });
+  themeObserver.observe(themeRoot, {
+    attributes: true,
+    attributeFilter: ['data-theme'],
+  });
+
+  themeToggle.addEventListener('click', () => {
+    const next = themeRoot.dataset.theme === 'dark' ? 'light' : 'dark';
+    themeRoot.dataset.theme = next;
+    try {
+      localStorage.setItem('theme', next);
+    } catch {
+      // The visible toggle still works when storage is unavailable.
+    }
+    syncThemeToggle(next === 'dark');
+  });
+}
+
 document
   .querySelectorAll<HTMLButtonElement>('[data-dialog-trigger]')
   .forEach((trigger) => {
@@ -106,39 +138,6 @@ document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((item) => {
     item.style.transform = 'translate(0, 0)';
   });
 });
-
-const themeButtons = document.querySelectorAll<HTMLButtonElement>(
-  '[data-theme-option]',
-);
-const themeIndicator = document.querySelector<HTMLElement>(
-  '.theme-switch__indicator',
-);
-const updateTheme = (theme: string) => {
-  themeButtons.forEach((button) =>
-    button.setAttribute(
-      'aria-pressed',
-      String(button.dataset.themeOption === theme),
-    ),
-  );
-  const active = [...themeButtons].find(
-    (button) => button.dataset.themeOption === theme,
-  );
-  if (active && themeIndicator) {
-    themeIndicator.style.width = `${active.offsetWidth}px`;
-    themeIndicator.style.transform = `translateX(${active.offsetLeft - 2}px)`;
-  }
-};
-updateTheme(localStorage.getItem('theme') ?? 'system');
-themeButtons.forEach((button) =>
-  button.addEventListener('click', () => {
-    const theme = button.dataset.themeOption ?? 'system';
-    localStorage.setItem('theme', theme);
-    if (theme === 'light' || theme === 'dark')
-      document.documentElement.dataset.theme = theme;
-    else document.documentElement.removeAttribute('data-theme');
-    updateTheme(theme);
-  }),
-);
 
 const loopItems = document.querySelectorAll<HTMLElement>('.footer-loop__item');
 if (loopItems.length > 1 && !reducedMotion.matches) {

@@ -2,6 +2,7 @@
 import Head, { type Props as HeadProps } from '@/components/Head.astro';
 import SiteFooter from '@/components/SiteFooter.astro';
 import SiteHeader from '@/components/SiteHeader.astro';
+import ThemeToggle from '@/components/ThemeToggle.astro';
 import site from '@/config/site';
 import '@/styles/global.css';
 
@@ -19,16 +20,28 @@ const head = Astro.props;
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <script is:inline>
       (() => {
-        const theme = localStorage.getItem('theme');
-        if (theme === 'light' || theme === 'dark') {
-          document.documentElement.dataset.theme = theme;
+        let theme;
+        try {
+          const stored = localStorage.getItem('theme');
+          theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light';
+        } catch {
+          theme = matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light';
         }
+        document.documentElement.dataset.theme = theme;
       })();
     </script>
     <Head {...head} />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
+    <ThemeToggle />
     <div class="site-shell">
       <SiteHeader />
       <main class="site-main" id="main-content">
