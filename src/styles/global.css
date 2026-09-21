@@ -186,6 +186,11 @@ p {
   }
 }
 
+.home-intro {
+  display: grid;
+  gap: 1rem;
+}
+
 .home-intro p {
   max-width: 52ch;
   margin: 0;

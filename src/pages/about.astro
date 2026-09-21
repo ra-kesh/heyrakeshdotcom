@@ -14,11 +14,15 @@ const socialLinks = site.author.links.filter(({ href }) =>
   <article class="prose-page">
     <header class="article-heading">
       <h1>{site.author.name}</h1>
-      <p class="article-heading__lede">{site.author.role}</p>
+      {
+        site.author.role && (
+          <p class="article-heading__lede">{site.author.role}</p>
+        )
+      }
     </header>
 
     <div class="prose">
-      <p>{site.intro}</p>
+      {site.intro.map((paragraph) => <p>{paragraph}</p>)}
 
       <h2>Contact</h2>
       {
