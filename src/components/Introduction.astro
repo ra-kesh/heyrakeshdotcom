@@ -12,8 +12,14 @@ const socialLinks = site.author.links.filter(({ href }) =>
     site.author.email && (
       <div class="intro-copy__contact">
         <p>
-          <a href={`mailto:${site.author.email}`}>{site.author.email}</a> is the
-          best way to reach me.
+          <a
+            href={`mailto:${site.author.email}`}
+            data-cuelume-press="press"
+            data-cuelume-toggle="release"
+          >
+            {site.author.email}
+          </a>{' '}
+          is the best way to reach me.
         </p>
         {socialLinks.length > 0 && (
           <p>
@@ -22,7 +28,15 @@ const socialLinks = site.author.links.filter(({ href }) =>
               <>
                 {index > 0 &&
                   (index === socialLinks.length - 1 ? ', and ' : ', ')}
-                <a href={item.href}>{item.label}</a>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cuelume-press="press"
+                  data-cuelume-toggle="release"
+                >
+                  {item.label}
+                </a>
               </>
             ))}
             .

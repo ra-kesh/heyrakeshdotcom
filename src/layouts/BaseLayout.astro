@@ -32,7 +32,14 @@ const head = Astro.props;
     <Head {...head} />
   </head>
   <body>
-    <a class="skip-link" href="#main-content">Skip to content</a>
+    <a
+      class="skip-link"
+      href="#main-content"
+      data-cuelume-press="press"
+      data-cuelume-toggle="release"
+    >
+      Skip to content
+    </a>
     <ThemeToggle />
     <div class="site-shell">
       <SiteHeader />

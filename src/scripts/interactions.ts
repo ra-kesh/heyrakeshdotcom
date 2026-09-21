@@ -1,3 +1,8 @@
+import { bind, setVolume } from 'cuelume';
+
+setVolume(0.22);
+bind();
+
 const themeRoot = document.documentElement;
 const themeToggle = document.getElementById('theme-toggle');
 if (themeToggle instanceof HTMLButtonElement) {
