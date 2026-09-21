@@ -1,6 +1,6 @@
 # heyrakesh.com
 
-The personal portfolio and publishing site of Rakesh Kumar Pradhan.
+The personal portfolio of Rakesh Kumar Pradhan.
 
 ## Development
 
@@ -12,14 +12,10 @@ pnpm dev
 The production URL defaults to `https://heyrakesh.com`. Copy `.env.example` to
 `.env` only when a different origin is needed locally.
 
-## Content
+## Configuration
 
-- Site identity, biography, navigation, and social links: `src/config/site.ts`
-- Posts: `src/content/posts`
-- Projects: `src/content/projects`
-
-Draft posts and projects are excluded from generated pages, feeds, and the
-homepage.
+Site identity, biography, SEO metadata, and social links live in
+`src/config/site.ts`.
 
 ## Commands
 

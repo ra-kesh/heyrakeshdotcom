@@ -19,18 +19,8 @@ const siteSchema = z.object({
     email: z.email().optional(),
     links: z.array(z.object({ label: z.string().min(1), href })).default([]),
   }),
-  experience: z.array(
-    z.object({
-      role: z.string().min(1),
-      company: z.string().min(1),
-      start: z.string().min(1),
-      end: z.string().min(1),
-      href,
-    }),
-  ),
   language: z.string().min(2),
   locale: z.string().min(2),
-  navigation: z.array(z.object({ label: z.string().min(1), href })),
 });
 
 const site = siteSchema.parse({
@@ -55,13 +45,8 @@ const site = siteSchema.parse({
       { label: 'Contra', href: 'https://contra.com/heyrakesh' },
     ],
   },
-  experience: [],
   language: 'en',
   locale: 'en_US',
-  navigation: [
-    { label: 'Home', href: '/' },
-    { label: 'About', href: '/about/' },
-  ],
 });
 
 export default site;

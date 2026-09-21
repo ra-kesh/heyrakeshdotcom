@@ -23,16 +23,9 @@ const head = Astro.props;
         let theme;
         try {
           const stored = localStorage.getItem('theme');
-          theme =
-            stored === 'light' || stored === 'dark'
-              ? stored
-              : matchMedia('(prefers-color-scheme: dark)').matches
-                ? 'dark'
-                : 'light';
+          theme = stored === 'light' || stored === 'dark' ? stored : 'light';
         } catch {
-          theme = matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'dark'
-            : 'light';
+          theme = 'light';
         }
         document.documentElement.dataset.theme = theme;
       })();

@@ -1,69 +1,12 @@
 ---
-import BlogList from '@/components/BlogList.astro';
 import Introduction from '@/components/Introduction.astro';
-import ProjectCard from '@/components/ProjectCard.astro';
 import site from '@/config/site';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { getPosts, getProjects } from '@/lib/content';
-
-const [posts, projects] = await Promise.all([getPosts(), getProjects()]);
-const featuredPosts = posts.filter(({ data }) => data.featured).slice(0, 3);
-const featuredProjects = projects
-  .filter(({ data }) => data.featured)
-  .slice(0, 4);
 ---
 
 <BaseLayout>
-  <div class="home">
-    <section class="home-intro" aria-label="Introduction">
-      <h1 class="sr-only">{site.name}</h1>
-      <Introduction />
-    </section>
-
-    {
-      featuredProjects.length > 0 && (
-        <section class="home-section" aria-labelledby="selected-projects">
-          <h2 id="selected-projects">Selected Projects</h2>
-          <ul class="project-grid">
-            {featuredProjects.map((project, index) => (
-              <ProjectCard project={project} index={index} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
-
-    {
-      site.experience.length > 0 && (
-        <section class="home-section" aria-labelledby="work-experience">
-          <h2 id="work-experience">Work Experience</h2>
-          <div class="experience-list">
-            {site.experience.map((job) => (
-              <a class="experience-row" href={job.href} data-spotlight>
-                <span class="experience-row__spotlight" aria-hidden="true" />
-                <div class="experience-row__content">
-                  <div>
-                    <h3>{job.role}</h3>
-                    <p>{job.company}</p>
-                  </div>
-                  <p class="experience-row__dates">
-                    {job.start} – {job.end}
-                  </p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </section>
-      )
-    }
-
-    {
-      featuredPosts.length > 0 && (
-        <section class="home-section" aria-labelledby="blog-posts">
-          <h2 id="blog-posts">Blog</h2>
-          <BlogList posts={featuredPosts} />
-        </section>
-      )
-    }
-  </div>
+  <section class="home-intro" aria-label="Introduction">
+    <h1 class="sr-only">{site.name}</h1>
+    <Introduction />
+  </section>
 </BaseLayout>
