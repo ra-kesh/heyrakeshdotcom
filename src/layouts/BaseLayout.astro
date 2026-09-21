@@ -1,6 +1,5 @@
 ---
 import Head, { type Props as HeadProps } from '@/components/Head.astro';
-import SiteFooter from '@/components/SiteFooter.astro';
 import SiteHeader from '@/components/SiteHeader.astro';
 import ThemeToggle from '@/components/ThemeToggle.astro';
 import site from '@/config/site';
@@ -40,7 +39,6 @@ const head = Astro.props;
       <main class="site-main" id="main-content">
         <slot />
       </main>
-      <SiteFooter />
     </div>
     <script>
       import '@/scripts/interactions';
