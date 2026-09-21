@@ -35,12 +35,16 @@ const canonicalUrl = canonical
   : new URL(Astro.url.pathname, root);
 const imageUrl = new URL(image, root);
 const documentTitle = title === site.title ? title : `${title} | ${site.name}`;
+const personId = new URL('/#person', root).href;
+const agencyId = new URL('/#organization', site.agency.url).href;
 const authorStructuredData = {
   '@type': 'Person',
+  '@id': personId,
   name: site.author.name,
   jobTitle: site.author.role,
   email: site.author.email,
   url: new URL('/', root).href,
+  worksFor: { '@id': agencyId },
   sameAs: site.author.links
     .filter(({ href }) => href.startsWith('http'))
     .map(({ href }) => href),
@@ -83,6 +87,13 @@ const defaultStructuredData: StructuredData =
             },
             {
               ...authorStructuredData,
+            },
+            {
+              '@type': 'Organization',
+              '@id': agencyId,
+              name: site.agency.name,
+              url: site.agency.url,
+              founder: { '@id': personId },
             },
           ],
         };

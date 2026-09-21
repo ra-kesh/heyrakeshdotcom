@@ -9,6 +9,10 @@ const siteSchema = z.object({
   title: z.string().min(1),
   seoDescription: z.string().min(1),
   intro: z.string().min(1),
+  agency: z.object({
+    name: z.string().min(1),
+    url: z.url(),
+  }),
   author: z.object({
     name: z.string().min(1),
     role: z.string().min(1),
@@ -34,9 +38,13 @@ const site = siteSchema.parse({
   name: 'Rakesh Kumar Pradhan',
   title: 'Rakesh Kumar Pradhan — Product Engineer',
   seoDescription:
-    'Rakesh Kumar Pradhan is a Product Engineer from India crafting thoughtful, intuitive products with AI that perform as well as they look.',
+    'Rakesh Kumar Pradhan is the founder of heydevteam, a product engineering studio crafting thoughtful, intuitive products with AI.',
   intro:
     'Hi, I am a product engineer from India. I love making thoughtful, intuitive products for my personal use and for my clients. I believe we can never have enough tasteful products that perform as well as they look.',
+  agency: {
+    name: 'heydevteam',
+    url: 'https://heydevteam.com',
+  },
   author: {
     name: 'Rakesh Kumar Pradhan',
     role: 'Product Engineer',
