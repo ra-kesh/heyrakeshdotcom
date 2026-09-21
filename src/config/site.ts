@@ -38,9 +38,9 @@ const site = siteSchema.parse({
   name: 'Rakesh Kumar Pradhan',
   title: 'Rakesh Kumar Pradhan — Designer & Developer',
   seoDescription:
-    'Rakesh Kumar Pradhan is a designer, developer, and founder of HeyDevTeam, creating thoughtful, intuitive products that perform as well as they look.',
+    'Rakesh Kumar Pradhan is a designer and developer from India who founded HeyDevTeam, a white-label product engineering studio for businesses and agencies.',
   intro: [
-    'Hi, I am a product engineer and the founder of HeyDevTeam, a white-label product development agency for agencies and businesses. We turn vague ideas into thoughtful, intuitive products that solve real problems.',
+    'Hi, I am a product engineer from HeyDevTeam, a white-label product engineering studio for agencies and businesses. We turn vague ideas into thoughtful, intuitive products that solve real problems.',
   ],
   agency: {
     name: 'HeyDevTeam',

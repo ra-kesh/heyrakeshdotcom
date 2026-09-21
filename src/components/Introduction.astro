@@ -10,18 +10,25 @@ const socialLinks = site.author.links.filter(({ href }) =>
   {site.intro.map((paragraph) => <p>{paragraph}</p>)}
   {
     site.author.email && (
-      <p>
-        The best way to reach me is by email at{' '}
-        <a href={`mailto:${site.author.email}`}>{site.author.email}</a>.
-        {socialLinks.length > 0 && ' You can also find me on '}
-        {socialLinks.map((item, index) => (
-          <>
-            {index > 0 && (index === socialLinks.length - 1 ? ', and ' : ', ')}
-            <a href={item.href}>{item.label}</a>
-          </>
-        ))}
-        {socialLinks.length > 0 && '.'}
-      </p>
+      <div class="intro-copy__contact">
+        <p>
+          <a href={`mailto:${site.author.email}`}>{site.author.email}</a> is the
+          best way to reach me.
+        </p>
+        {socialLinks.length > 0 && (
+          <p>
+            You can also find me on{' '}
+            {socialLinks.map((item, index) => (
+              <>
+                {index > 0 &&
+                  (index === socialLinks.length - 1 ? ', and ' : ', ')}
+                <a href={item.href}>{item.label}</a>
+              </>
+            ))}
+            .
+          </p>
+        )}
+      </div>
     )
   }
 </div>
@@ -29,7 +36,15 @@ const socialLinks = site.author.links.filter(({ href }) =>
 <style>
   .intro-copy {
     display: grid;
-    gap: 1rem;
+    gap: 1.5rem;
+  }
+
+  .intro-copy__contact {
+    display: block;
+  }
+
+  .intro-copy__contact p + p {
+    margin-top: 1.25rem;
   }
 
   .intro-copy p {
