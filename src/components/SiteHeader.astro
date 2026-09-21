@@ -4,13 +4,4 @@ import site from '@/config/site';
 
 <header class="site-header">
   <a class="site-name" href="/">{site.author.name}</a>
-  <p class="role-effect" aria-label={site.author.role}>
-    {
-      [...site.author.role].map((character, index) => (
-        <span aria-hidden="true" style={`--character-index: ${index}`}>
-          {character === ' ' ? '\u00a0' : character}
-        </span>
-      ))
-    }
-  </p>
 </header>

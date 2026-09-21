@@ -6,7 +6,11 @@ import { getPosts } from '@/lib/content';
 const posts = await getPosts();
 ---
 
-<BaseLayout title="Posts" description="Writing by Rakesh Kumar Pradhan.">
+<BaseLayout
+  title="Posts"
+  description="Writing by Rakesh Kumar Pradhan."
+  noIndex={posts.length === 0}
+>
   <section class="collection-page" aria-labelledby="posts-title">
     <h1 id="posts-title">Blog</h1>
     {

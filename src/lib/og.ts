@@ -43,11 +43,19 @@ export async function renderOgImage(options: {
 
   const svg = `
     <svg width="${OG_WIDTH}" height="${OG_HEIGHT}" viewBox="0 0 ${OG_WIDTH} ${OG_HEIGHT}" xmlns="http://www.w3.org/2000/svg">
-      <rect width="1200" height="630" fill="#ffffff" />
-      <rect x="32" y="32" width="1136" height="566" fill="none" stroke="#111111" stroke-width="2" />
-      <text x="72" y="98" fill="#111111" font-family="Arial, sans-serif" font-size="24">${escapeXml(options.label)}</text>
-      <text x="72" y="224" fill="#111111" font-family="Arial, sans-serif" font-size="64" font-weight="700">${tspans}</text>
-      <text x="72" y="550" fill="#111111" font-family="Arial, sans-serif" font-size="28">${escapeXml(options.siteName)}</text>
+      <defs>
+        <radialGradient id="accent" cx="100%" cy="0%" r="80%">
+          <stop offset="0%" stop-color="#2563eb" stop-opacity="0.32" />
+          <stop offset="100%" stop-color="#2563eb" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+      <rect width="1200" height="630" fill="#09090b" />
+      <rect width="1200" height="630" fill="url(#accent)" />
+      <rect x="32" y="32" width="1136" height="566" rx="24" fill="none" stroke="#27272a" stroke-width="2" />
+      <circle cx="84" cy="88" r="8" fill="#2563eb" />
+      <text x="108" y="97" fill="#a1a1aa" font-family="Arial, sans-serif" font-size="24">${escapeXml(options.label)}</text>
+      <text x="72" y="224" fill="#fafafa" font-family="Arial, sans-serif" font-size="64" font-weight="700">${tspans}</text>
+      <text x="72" y="550" fill="#a1a1aa" font-family="Arial, sans-serif" font-size="28">${escapeXml(options.siteName)}</text>
     </svg>
   `;
 

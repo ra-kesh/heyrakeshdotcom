@@ -1,28 +1,25 @@
-# Astro Foundation
+# heyrakesh.com
 
-An intentionally unstyled Astro and Tailwind foundation for a personal site, portfolio, or publication.
+The personal portfolio and publishing site of Rakesh Kumar Pradhan.
 
-## Start
+## Development
 
 ```sh
-cp .env.example .env
 pnpm install
 pnpm dev
 ```
 
-Set the production origin in `.env`, then replace the identity and navigation values in `src/config/site.ts`.
+The production URL defaults to `https://heyrakesh.com`. Copy `.env.example` to
+`.env` only when a different origin is needed locally.
 
 ## Content
 
-- General pages: `src/content/pages`
+- Site identity, biography, navigation, and social links: `src/config/site.ts`
 - Posts: `src/content/posts`
 - Projects: `src/content/projects`
 
-Frontmatter is validated by `src/content.config.ts`. Draft entries are excluded from generated pages and feeds.
-
-## Design
-
-Tailwind utilities are available, but Tailwind Preflight is intentionally omitted. The starter therefore uses native browser presentation. Add tokens, a reset, and components in `src/styles/global.css` when a design direction exists.
+Draft posts and projects are excluded from generated pages, feeds, and the
+homepage.
 
 ## Commands
 
@@ -35,4 +32,4 @@ pnpm build
 pnpm validate
 ```
 
-The production build generates HTML pages, canonical and social metadata, structured data, a sitemap, robots rules, a web manifest, full-content RSS, optimized content images, and social-card images.
+`pnpm validate` runs formatting, linting, type checks, and the production build.

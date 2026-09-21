@@ -6,15 +6,7 @@ const footerLinks = site.navigation.filter(({ href }) => href !== '/');
 ---
 
 <footer class="site-footer">
-  <div
-    class="footer-loop"
-    aria-label={`Copyright ${year} ${site.author.name}. Built with Astro.`}
-  >
-    <span aria-hidden="true" class="footer-loop__item is-active"
-      >&copy; {year} {site.author.name}</span
-    >
-    <span aria-hidden="true" class="footer-loop__item">Built with Astro.</span>
-  </div>
+  <p class="site-footer__copyright">&copy; {year} {site.author.name}</p>
   <div class="site-footer__actions">
     <nav aria-label="Footer navigation">
       <ul>

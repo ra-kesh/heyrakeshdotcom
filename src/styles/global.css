@@ -145,26 +145,6 @@ p {
   text-decoration: none;
 }
 
-.site-header p {
-  margin: 0;
-  color: var(--text-soft);
-  font-size: 0.875rem;
-  line-height: 1.5;
-}
-
-.role-effect span {
-  display: inline-block;
-  opacity: 0;
-  animation: character-fade 300ms ease forwards;
-  animation-delay: calc(500ms + var(--character-index) * 30ms);
-}
-
-@keyframes character-fade {
-  to {
-    opacity: 1;
-  }
-}
-
 .site-main {
   flex: 1;
 }
@@ -207,7 +187,7 @@ p {
 }
 
 .home-intro p {
-  max-width: 34rem;
+  max-width: 52ch;
   margin: 0;
   color: var(--text-soft);
 }
@@ -867,29 +847,10 @@ p {
   border-top: 1px solid var(--border);
 }
 
-.footer-loop {
-  position: relative;
-  width: 13rem;
-  height: 1.125rem;
-  overflow: hidden;
+.site-footer__copyright {
+  margin: 0;
   color: var(--text-muted);
   font-size: 0.75rem;
-}
-
-.footer-loop__item {
-  position: absolute;
-  inset: 0 auto auto 0;
-  opacity: 0;
-  transform: translateY(1.25rem);
-  white-space: nowrap;
-  transition:
-    opacity 300ms ease,
-    transform 300ms ease;
-}
-
-.footer-loop__item.is-active {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .site-footer__actions,
@@ -980,11 +941,6 @@ p {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
-  }
-
-  .role-effect span {
-    opacity: 1;
-    animation: none;
   }
 
   .project-dialog {

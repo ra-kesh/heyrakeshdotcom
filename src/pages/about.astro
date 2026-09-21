@@ -1,0 +1,44 @@
+---
+import site from '@/config/site';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const socialLinks = site.author.links.filter(({ href }) =>
+  href.startsWith('http'),
+);
+---
+
+<BaseLayout
+  title={`About ${site.author.name}`}
+  description={site.seoDescription}
+>
+  <article class="prose-page">
+    <header class="article-heading">
+      <h1>{site.author.name}</h1>
+      <p class="article-heading__lede">{site.author.role}</p>
+    </header>
+
+    <div class="prose">
+      <p>{site.intro}</p>
+
+      <h2>Contact</h2>
+      {
+        site.author.email && (
+          <p>
+            <a href={`mailto:${site.author.email}`}>{site.author.email}</a>
+          </p>
+        )
+      }
+      {
+        socialLinks.length > 0 && (
+          <ul>
+            {socialLinks.map((item) => (
+              <li>
+                <a href={item.href}>{item.label}</a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </article>
+</BaseLayout>

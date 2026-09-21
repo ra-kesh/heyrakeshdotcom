@@ -123,7 +123,7 @@ export const GET: APIRoute = async ({ site }) => {
 
   return rss({
     title: `${siteConfig.name} — Posts`,
-    description: siteConfig.description,
+    description: siteConfig.seoDescription,
     site: root,
     items,
     customData: `<language>${siteConfig.language}</language>`,

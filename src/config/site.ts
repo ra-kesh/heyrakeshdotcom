@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { isSafeHref } from '@/lib/urls';
+import { isSafeHref } from '../lib/urls';
 
 const href = z.string().trim().min(1).refine(isSafeHref, 'Unsafe URL');
 
@@ -7,7 +7,8 @@ const siteSchema = z.object({
   url: z.url(),
   name: z.string().min(1),
   title: z.string().min(1),
-  description: z.string().min(1),
+  seoDescription: z.string().min(1),
+  intro: z.string().min(1),
   author: z.object({
     name: z.string().min(1),
     role: z.string().min(1),
@@ -32,8 +33,10 @@ const site = siteSchema.parse({
   url: 'https://heyrakesh.com',
   name: 'Rakesh Kumar Pradhan',
   title: 'Rakesh Kumar Pradhan — Product Engineer',
-  description:
-    'I craft thoughtful, intuitive products with the help of AI—products that perform as well as they look.',
+  seoDescription:
+    'Rakesh Kumar Pradhan is a Product Engineer from India crafting thoughtful, intuitive products with AI that perform as well as they look.',
+  intro:
+    'Hi, I am a product engineer from India. I love making thoughtful, intuitive products for my personal use and for my clients. I believe we can never have enough tasteful products that perform as well as they look.',
   author: {
     name: 'Rakesh Kumar Pradhan',
     role: 'Product Engineer',
@@ -54,8 +57,6 @@ const site = siteSchema.parse({
   navigation: [
     { label: 'Home', href: '/' },
     { label: 'About', href: '/about/' },
-    { label: 'Projects', href: '/projects/' },
-    { label: 'Posts', href: '/posts/' },
   ],
 });
 

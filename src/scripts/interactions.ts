@@ -139,16 +139,6 @@ document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((item) => {
   });
 });
 
-const loopItems = document.querySelectorAll<HTMLElement>('.footer-loop__item');
-if (loopItems.length > 1 && !reducedMotion.matches) {
-  let loopIndex = 0;
-  window.setInterval(() => {
-    loopItems[loopIndex]?.classList.remove('is-active');
-    loopIndex = (loopIndex + 1) % loopItems.length;
-    loopItems[loopIndex]?.classList.add('is-active');
-  }, 2000);
-}
-
 const copyButton = document.querySelector<HTMLButtonElement>('[data-copy-url]');
 copyButton?.addEventListener('click', () => {
   const state = copyButton.querySelector<HTMLElement>('[data-copy-state]');
