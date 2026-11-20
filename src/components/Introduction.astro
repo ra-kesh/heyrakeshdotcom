@@ -4,10 +4,30 @@ import site from '@/config/site';
 const socialLinks = site.author.links.filter(({ href }) =>
   href.startsWith('http'),
 );
+// The first mention of the agency in the intro links to its site.
+const [firstParagraph = '', ...otherParagraphs] = site.intro;
+const agencyAt = firstParagraph.indexOf(site.agency.name);
 ---
 
 <div class="intro-copy">
-  {site.intro.map((paragraph) => <p>{paragraph}</p>)}
+  {
+    agencyAt === -1 ? (
+      <p>{firstParagraph}</p>
+    ) : (
+      <p>
+        {firstParagraph.slice(0, agencyAt)}
+        <a
+          href={site.agency.url}
+          data-cuelume-press="press"
+          data-cuelume-toggle="release"
+        >
+          {site.agency.name}
+        </a>
+        {firstParagraph.slice(agencyAt + site.agency.name.length)}
+      </p>
+    )
+  }
+  {otherParagraphs.map((paragraph) => <p>{paragraph}</p>)}
   {
     site.author.email && (
       <div class="intro-copy__contact">
